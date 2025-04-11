@@ -92,48 +92,10 @@ public class CommonRunner implements CommandLineRunner {
         System.out.println("--------- Ricerca postazioni per tipo e città ---------");
         System.out.println(" ");
 
-        // Ricerche
-        TipoPostazione tipoRicercato1 = TipoPostazione.PRIVATO;
-        String cittaRicercata1 = "Milano";
-        List<Postazione> postazioniTrovate1 = postazioneRepository.findByTipoAndEdificio_Citta(tipoRicercato1, cittaRicercata1);
-        if (postazioniTrovate1.isEmpty()) {
-            System.out.println("Nessuna postazione trovata per tipo " + tipoRicercato1 + " a " + cittaRicercata1);
-            System.out.println(" ");
-        } else {
-            System.out.println("Postazioni trovate per tipo " + tipoRicercato1 + " a " + cittaRicercata1 + ":");
-            postazioniTrovate1.forEach(p ->
-                    System.out.println("Codice: " + p.getCodice() + ", Descrizione: " + p.getDescrizione()));
-            System.out.println(" ");
-        }
-
-
-        TipoPostazione tipoRicercato2 = TipoPostazione.SALA_RIUNIONI;
-        String cittaRicercata2 = "Palermo";
-        List<Postazione> postazioniTrovate2 = postazioneRepository.findByTipoAndEdificio_Citta(tipoRicercato2, cittaRicercata2);
-        if (postazioniTrovate2.isEmpty()) {
-            System.out.println("Nessuna postazione trovata per tipo " + tipoRicercato2 + " a " + cittaRicercata2);
-            System.out.println(" ");
-        } else {
-            System.out.println("Postazioni trovate per tipo " + tipoRicercato2 + " a " + cittaRicercata2 + ":");
-            postazioniTrovate2.forEach(p ->
-                    System.out.println("Codice: " + p.getCodice() + ", Descrizione: " + p.getDescrizione()));
-            System.out.println(" ");
-        }
-
-
-        // Ricerca che darà il messaggio "Nessuna postazione trovata"
-        TipoPostazione tipoRicercato3 = TipoPostazione.PRIVATO;
-        String cittaRicercata3 = "Torino";
-        List<Postazione> postazioniTrovate3 = postazioneRepository.findByTipoAndEdificio_Citta(tipoRicercato3, cittaRicercata3);
-        if (postazioniTrovate3.isEmpty()) {
-            System.out.println("Nessuna postazione trovata per tipo " + tipoRicercato3 + " a " + cittaRicercata3);
-            System.out.println(" ");
-        } else {
-            System.out.println("Postazioni trovate per tipo " + tipoRicercato3 + " a " + cittaRicercata3 + ":");
-            postazioniTrovate3.forEach(p ->
-                    System.out.println("Codice: " + p.getCodice() + ", Descrizione: " + p.getDescrizione()));
-            System.out.println(" ");
-        }
+        // Ricerca postazioni per tipo e città
+        postazioneService.ricercaPostazioni(TipoPostazione.PRIVATO, "Milano");
+        postazioneService.ricercaPostazioni(TipoPostazione.SALA_RIUNIONI, "Palermo");
+        postazioneService.ricercaPostazioni(TipoPostazione.PRIVATO, "Torino");
 
     }
 
